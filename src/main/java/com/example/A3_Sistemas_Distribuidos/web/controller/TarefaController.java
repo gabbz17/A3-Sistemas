@@ -1,5 +1,6 @@
 package com.example.A3_Sistemas_Distribuidos.web.controller;
 
+import com.example.A3_Sistemas_Distribuidos.documentation.TarefaDocs;
 import com.example.A3_Sistemas_Distribuidos.web.dto.TarefaResponseDTO;
 import com.example.A3_Sistemas_Distribuidos.entity.Tarefa;
 import com.example.A3_Sistemas_Distribuidos.service.TarefaService;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/tarefa")
-public class TarefaController {
+public class TarefaController implements TarefaDocs {
 
     @Autowired
     TarefaService service;

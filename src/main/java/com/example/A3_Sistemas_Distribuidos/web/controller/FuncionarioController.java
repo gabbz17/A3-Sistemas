@@ -1,8 +1,11 @@
 package com.example.A3_Sistemas_Distribuidos.web.controller;
 
+import com.example.A3_Sistemas_Distribuidos.documentation.FuncionarioDocs;
 import com.example.A3_Sistemas_Distribuidos.entity.Funcionario;
 import com.example.A3_Sistemas_Distribuidos.service.FuncionarioService;
+import com.example.A3_Sistemas_Distribuidos.web.dto.FuncionarioDTO;
 import com.example.A3_Sistemas_Distribuidos.web.dto.FuncionarioResponseDTO;
+import com.example.A3_Sistemas_Distribuidos.web.mapper.FuncionarioMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/funcionario")
-public class FuncionarioController {
+public class FuncionarioController implements FuncionarioDocs {
 
     @Autowired
     FuncionarioService service;
@@ -24,33 +27,38 @@ public class FuncionarioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Funcionario>> findAll(){
+    public ResponseEntity<List<FuncionarioDTO>> findAll(){
         List<Funcionario> fun = service.findAll();
-        return ResponseEntity.ok().body(fun);
+        List<FuncionarioDTO> list = FuncionarioMapper.toAllDto(fun);
+        return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<Funcionario> findById(@PathVariable Long id){
+    public ResponseEntity<FuncionarioDTO> findById(@PathVariable Long id){
         Funcionario fun = service.findById(id);
-        return ResponseEntity.ok().body(fun);
+        FuncionarioDTO dto = FuncionarioMapper.toDTO(fun);
+        return ResponseEntity.ok().body(dto);
     }
 
     @GetMapping("/cargo/{cargo}")
-    public ResponseEntity<List<Funcionario>> findByCargo(@PathVariable String cargo){
+    public ResponseEntity<List<FuncionarioDTO>> findByCargo(@PathVariable String cargo){
         List<Funcionario> fun = service.findByCargo(cargo);
-        return ResponseEntity.ok().body(fun);
+        List<FuncionarioDTO> list = FuncionarioMapper.toAllDto(fun);
+        return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/nome/{nome}")
-    public ResponseEntity<Funcionario> findByNome(@PathVariable String nome){
+    public ResponseEntity<FuncionarioDTO> findByNome(@PathVariable String nome){
         Funcionario fun = service.findByNome(nome);
-        return ResponseEntity.ok().body(fun);
+        FuncionarioDTO dto = FuncionarioMapper.toDTO(fun);
+        return ResponseEntity.ok().body(dto);
     }
 
     @PatchMapping("/update/{id}")
-    public ResponseEntity<Funcionario> update(@PathVariable Long id, @Valid @RequestBody FuncionarioResponseDTO cargo){
+    public ResponseEntity<FuncionarioDTO> update(@PathVariable Long id, @Valid @RequestBody FuncionarioResponseDTO cargo){
         Funcionario fun = service.update(id, cargo.getCargo());
-        return ResponseEntity.ok().body(fun);
+        FuncionarioDTO dto = FuncionarioMapper.toDTO(fun);
+        return ResponseEntity.ok().body(dto);
     }
 
     @DeleteMapping("/delete/{id}")

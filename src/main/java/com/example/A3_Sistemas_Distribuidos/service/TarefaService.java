@@ -6,6 +6,7 @@ import com.example.A3_Sistemas_Distribuidos.entity.role.Cargo;
 import com.example.A3_Sistemas_Distribuidos.entity.role.Status;
 import com.example.A3_Sistemas_Distribuidos.exception.IdNotFoundException;
 import com.example.A3_Sistemas_Distribuidos.exception.ListNotFoundException;
+import com.example.A3_Sistemas_Distribuidos.exception.NameUniqueException;
 import com.example.A3_Sistemas_Distribuidos.repository.TarefaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class TarefaService {
         Funcionario supervisor = service.findByNome(tarefa.getSupervisor());
 
         if (!atendente.getCargo().equals(Cargo.ATENDENTE) || !supervisor.getCargo().equals(Cargo.SUPERVISOR)){
-            throw new RuntimeException("Funcionário(os) com cargo errado!");
+            throw new NameUniqueException("Funcionário(os) com cargo errado!");
         }
 
         return repository.save(tarefa);
@@ -73,7 +74,7 @@ public class TarefaService {
         Tarefa tarefa = findByUid(uid);
 
         if (status.equals(Status.ATRIBUIDO)){
-            throw new RuntimeException(String.format("Valor para status (%s), negado!", status));
+            throw new NameUniqueException(String.format("Valor para status (%s), negado!", status));
         }
 
         tarefa.setStatus(status);
