@@ -1,5 +1,6 @@
 package com.example.A3_Sistemas_Distribuidos.entity.role;
 
+import com.example.A3_Sistemas_Distribuidos.exception.RoleException;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum Cargo {
@@ -21,6 +22,6 @@ public enum Cargo {
                     return GERENTE;
             }
         }
-        throw new IllegalArgumentException("Valor inválido para Cargo: " + value);
+        throw new RoleException("Valor inválido para Cargo: " + value);
     }
 }
