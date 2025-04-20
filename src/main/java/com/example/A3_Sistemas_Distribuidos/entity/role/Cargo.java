@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum Cargo {
     ATENDENTE,
-    SURPEVISOR,
+    SUPERVISOR,
     GERENTE;
 
     @JsonCreator
@@ -14,13 +14,13 @@ public enum Cargo {
                 case "ATENDENTE":
                     return ATENDENTE;
 
-                case "SURPEVISOR":
-                    return SURPEVISOR;
+                case "SUPERVISOR":
+                    return SUPERVISOR;
 
                 case "GERENTE":
                     return GERENTE;
             }
         }
-        throw new IllegalArgumentException("Valor inválido para Role: " + value);
+        throw new IllegalArgumentException("Valor inválido para Cargo: " + value);
     }
 }

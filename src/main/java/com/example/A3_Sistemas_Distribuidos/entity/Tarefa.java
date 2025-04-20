@@ -17,7 +17,7 @@ public class Tarefa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Long uid;
+    private String uid;
     @NotBlank
     private String descricao;
     @NotBlank
@@ -26,5 +26,5 @@ public class Tarefa {
     private String supervisor;
     @NotNull
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status status = Status.ATRIBUIDO;
 }

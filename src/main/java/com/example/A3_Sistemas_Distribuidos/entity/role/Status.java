@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum Status {
     ATRIBUIDO,
-    PENDENTE,
+    EM_ANDAMENTO,
     CONCLUIDO;
 
     @JsonCreator
@@ -14,13 +14,13 @@ public enum Status {
                 case "ATRIBUIDO":
                     return ATRIBUIDO;
 
-                case "PENDENTE":
-                    return PENDENTE;
+                case "EM_ANDAMENTO":
+                    return EM_ANDAMENTO;
 
                 case "CONCLUIDO":
                     return CONCLUIDO;
             }
         }
-        throw new IllegalArgumentException("Valor inválido para Role: " + value);
+        throw new IllegalArgumentException("Valor inválido para Status: " + value);
     }
 }

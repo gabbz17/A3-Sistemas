@@ -36,11 +36,10 @@ public class FuncionarioService {
         return repository.findByNome(nome);
     }
 
-    public Funcionario update(Long id, String cargo){
+    public Funcionario update(Long id, Cargo cargo){
         Funcionario funcionario = findById(id);
-        Cargo cg = Cargo.valueOf(cargo);
 
-        funcionario.setCargo(cg);
+        funcionario.setCargo(cargo);
         return repository.save(funcionario);
     }
 

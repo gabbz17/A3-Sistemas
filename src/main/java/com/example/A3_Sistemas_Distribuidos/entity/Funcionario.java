@@ -23,12 +23,14 @@ public class Funcionario {
     private String nome;
     @NotBlank
     @Size(min = 11, max = 11)
+    @Column(unique = true)
     private String cpf;
     @NotBlank
     @Column(unique = true)
     private String email;
     @NotBlank
     @Column(unique = true)
+    @Size(min = 10, max = 11)
     private String numero;
     @NotNull
     @Enumerated(EnumType.STRING)
