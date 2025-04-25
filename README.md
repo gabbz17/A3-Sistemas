@@ -2,7 +2,7 @@
 **Esta API gerencia 2 tipos de entidades, Funcionário e Tarefas, onde em uma será possível cadastrar seus funcionários e atribuir seus cargos, e em tarefas serão alocadas funções a esses funcionários.**
 
 # Requisitos
-* ** Há 3 tipos diferentes de clientes: o funcionário, o supervisor e o gerente;**
+* **Há 3 tipos diferentes de clientes: o funcionário, o supervisor e o gerente;**
 
 * **O funcionário acompanha as tarefas alocadas para ele informa sempre que uma dessas tarefas foi concluída;**
 
