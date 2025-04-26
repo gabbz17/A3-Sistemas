@@ -76,7 +76,8 @@
 http://localhost:8080/sistemas-docs.html
 
 # Documento de configuração do ambiente para rodar a API
-[A3 - Sistemas - Configuração de ambiente.pdf](https://github.com/user-attachments/files/19917836/A3.-.Sistemas.-.Configuracao.de.ambiente.pdf)
+[A3 - Sistemas - Configuração de ambiente.pdf](https://github.com/user-attachments/files/19924447/A3.-.Sistemas.-.Configuracao.de.ambiente.pdf)
+
 
 ****
 
