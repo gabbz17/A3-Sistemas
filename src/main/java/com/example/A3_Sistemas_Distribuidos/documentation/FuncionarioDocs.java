@@ -22,7 +22,7 @@ public interface FuncionarioDocs {
     @Operation(summary = "Cria um novo Funcionário", description = "Http para criar um novo Funcionário",
             responses = {@ApiResponse(responseCode = "201", description = "Funcionário criado com sucesso!", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
                     @ApiResponse(responseCode = "409", description = "Erro ao criar Funcionário!", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))})
-    ResponseEntity<Funcionario> create(@Valid @RequestBody Funcionario funcionario);
+    ResponseEntity<FuncionarioDTO> create(@Valid @RequestBody Funcionario funcionario);
 
     @Operation(summary = "Retorna todos os Funcionários", description = "Http para retornar todos os Funcionários",
             responses = {@ApiResponse(responseCode = "200", description = "Sucesso ao listar todos os Funcionários", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),

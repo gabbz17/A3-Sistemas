@@ -8,6 +8,7 @@ import com.example.A3_Sistemas_Distribuidos.exception.NameNotFoundException;
 import com.example.A3_Sistemas_Distribuidos.exception.NameUniqueException;
 import com.example.A3_Sistemas_Distribuidos.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public class FuncionarioService {
 
     public Funcionario create(Funcionario funcionario){
         try {
+            String encryptedPassword = new BCryptPasswordEncoder().encode(funcionario.getSenha());
+            funcionario.setSenha(encryptedPassword);
             return repository.save(funcionario);
         } catch (org.springframework.dao.DataIntegrityViolationException e) {
             throw new NameUniqueException("Dados já cadastrados!");

@@ -39,7 +39,7 @@ public class TarefaService {
 
     public Tarefa findByUid(String uid){
         return repository.findById(uid).orElseThrow(() ->
-                new IdNotFoundException(String.format("Funcionário com o uid (%s), não encontrado!", uid)));
+                new IdNotFoundException(String.format("Tarefa com o uid (%s), não encontrada!", uid)));
     }
 
     public List<Tarefa> findByStatus(String status){

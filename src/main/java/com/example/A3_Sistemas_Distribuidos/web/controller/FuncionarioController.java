@@ -9,6 +9,7 @@ import com.example.A3_Sistemas_Distribuidos.web.mapper.FuncionarioMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,9 +22,10 @@ public class FuncionarioController implements FuncionarioDocs {
     FuncionarioService service;
 
     @PostMapping
-    public ResponseEntity<Funcionario> create(@Valid @RequestBody Funcionario funcionario){
+    public ResponseEntity<FuncionarioDTO> create(@Valid @RequestBody Funcionario funcionario){
         Funcionario fun = service.create(funcionario);
-        return ResponseEntity.status(201).body(fun);
+        FuncionarioDTO dto = FuncionarioMapper.toDTO(funcionario);
+        return ResponseEntity.status(201).body(dto);
     }
 
     @GetMapping
