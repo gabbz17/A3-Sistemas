@@ -43,6 +43,8 @@ public class Funcionario implements UserDetails {
     private Cargo cargo;
     @NotBlank
     private String senha;
+    @OneToMany(mappedBy = "funcionario")
+    private List<Tarefa> tarefa;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

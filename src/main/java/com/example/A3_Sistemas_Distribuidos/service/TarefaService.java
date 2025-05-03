@@ -11,6 +11,7 @@ import com.example.A3_Sistemas_Distribuidos.repository.TarefaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -29,6 +30,8 @@ public class TarefaService {
         if (!atendente.getCargo().equals(Cargo.ATENDENTE) || !supervisor.getCargo().equals(Cargo.SUPERVISOR)){
             throw new NameUniqueException("Funcionário(os) com cargo errado!");
         }
+
+        tarefa.setFuncionario(atendente);
 
         return repository.save(tarefa);
     }
@@ -75,6 +78,10 @@ public class TarefaService {
 
         if (status.equals(Status.ATRIBUIDO)){
             throw new NameUniqueException(String.format("Valor para status (%s), negado!", status));
+        }
+
+        if (status.equals(Status.CONCLUIDO)) {
+            tarefa.setFinalizado(LocalDateTime.now());
         }
 
         tarefa.setStatus(status);

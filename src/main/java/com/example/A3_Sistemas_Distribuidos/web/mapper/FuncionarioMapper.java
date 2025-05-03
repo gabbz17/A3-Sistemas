@@ -8,7 +8,7 @@ import java.util.List;
 public class FuncionarioMapper {
 
     public static FuncionarioDTO toDTO(Funcionario funcionario){
-        return new FuncionarioDTO(funcionario.getId(), funcionario.getNome(), funcionario.getEmail(), funcionario.getCargo());
+        return new FuncionarioDTO(funcionario.getId(), funcionario.getNome(), funcionario.getEmail(), funcionario.getCargo(), funcionario.getTarefa());
     }
 
     public static List<FuncionarioDTO> toAllDto(List<Funcionario> list){
