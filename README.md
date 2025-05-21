@@ -38,6 +38,8 @@
 *DELETE*
 **http://localhost:8080/api/funcionario/delete/{id} -> Deleta cadastro do funcionario através do id**
 
+****
+
 * API - Tarefa
 
 *POST*
@@ -76,10 +78,11 @@
 http://localhost:8080/sistemas-docs.html
 
 # Documento de configuração do ambiente para rodar a API
-[A3 - Sistemas - Configuração de ambiente.pdf](https://github.com/user-attachments/files/19924447/A3.-.Sistemas.-.Configuracao.de.ambiente.pdf)
+[A3 - Sistemas - Configuração de ambiente.pdf](https://github.com/user-attachments/files/20358339/A3.-.Sistemas.-.Configuracao.de.ambiente.pdf)
 
 
-****
+
+
 
 
 
