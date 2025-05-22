@@ -31,7 +31,7 @@ public class SecurityConfig {
                         //INICIO DA AUTORIZAÇÃO DE FUNCIONARIOS
                         .requestMatchers(HttpMethod.POST, "/api/funcionario").hasRole("GERENTE")
                         .requestMatchers(HttpMethod.GET, "/api/funcionario").hasRole("GERENTE")
-                        .requestMatchers(HttpMethod.GET, "/api/funcionario/id/*").hasRole("GERENTE")
+                        .requestMatchers(HttpMethod.GET, "/api/funcionario/id/*").hasRole("ATENDENTE")
                         .requestMatchers(HttpMethod.GET, "/api/funcionario/cargo/*").hasRole("GERENTE")
                         .requestMatchers(HttpMethod.GET, "/api/funcionario/nome/*").hasRole("GERENTE")
                         .requestMatchers(HttpMethod.PATCH, "/api/funcionario/update/*").hasRole("GERENTE")
@@ -41,7 +41,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/tarefa").hasRole("SUPERVISOR")
                         .requestMatchers(HttpMethod.GET, "/api/tarefa/status/*").hasRole("SUPERVISOR")
                         .requestMatchers(HttpMethod.GET, "/api/tarefa/supervisor/*").hasRole("GERENTE")
-                        .requestMatchers(HttpMethod.GET, "/api/tarefa/atendente/*").hasRole("GERENTE")
+                        .requestMatchers(HttpMethod.GET, "/api/tarefa/atendente/*").hasRole("SUPERVISOR")
                         .requestMatchers(HttpMethod.DELETE, "/api/tarefa/delete/*").hasRole("GERENTE")
                         .anyRequest().authenticated()
                 )
