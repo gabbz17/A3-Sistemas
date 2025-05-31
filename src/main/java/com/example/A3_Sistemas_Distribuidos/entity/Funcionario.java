@@ -2,6 +2,7 @@ package com.example.A3_Sistemas_Distribuidos.entity;
 
 import com.example.A3_Sistemas_Distribuidos.entity.role.Cargo;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -28,11 +29,12 @@ public class Funcionario implements UserDetails {
     @NotBlank
     private String nome;
     @NotBlank
-    @Size(min = 11, max = 11)
+    @Size(min = 11, max = 11, message = "O cpf tem que conter 11 caracteres!")
     @Column(unique = true)
     private String cpf;
     @NotBlank
     @Column(unique = true)
+    @Email
     private String email;
     @NotBlank
     @Column(unique = true)

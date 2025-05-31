@@ -5,6 +5,8 @@ import com.example.A3_Sistemas_Distribuidos.entity.Funcionario;
 import com.example.A3_Sistemas_Distribuidos.service.FuncionarioService;
 import com.example.A3_Sistemas_Distribuidos.web.dto.FuncionarioDTO;
 import com.example.A3_Sistemas_Distribuidos.web.dto.FuncionarioResponseDTO;
+import com.example.A3_Sistemas_Distribuidos.web.dto.UpdateFuncionarioPassword;
+import com.example.A3_Sistemas_Distribuidos.web.dto.UpdateGerentPassword;
 import com.example.A3_Sistemas_Distribuidos.web.mapper.FuncionarioMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,7 @@ public class FuncionarioController implements FuncionarioDocs {
     @PostMapping
     public ResponseEntity<FuncionarioDTO> create(@Valid @RequestBody Funcionario funcionario){
         Funcionario fun = service.create(funcionario);
-        FuncionarioDTO dto = FuncionarioMapper.toDTO(funcionario);
+        FuncionarioDTO dto = FuncionarioMapper.toDTO(fun);
         return ResponseEntity.status(201).body(dto);
     }
 
@@ -59,6 +61,20 @@ public class FuncionarioController implements FuncionarioDocs {
     @PatchMapping("/update/{id}")
     public ResponseEntity<FuncionarioDTO> update(@PathVariable Long id, @Valid @RequestBody FuncionarioResponseDTO cargo){
         Funcionario fun = service.update(id, cargo.getCargo());
+        FuncionarioDTO dto = FuncionarioMapper.toDTO(fun);
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @PatchMapping("/update/gerente/{id}")
+    public ResponseEntity<FuncionarioDTO> updatePasswordGerente(@Valid @RequestBody UpdateGerentPassword password, @PathVariable Long id){
+        Funcionario fun = service.updatePasswordGerente(id, password.senha());
+        FuncionarioDTO dto = FuncionarioMapper.toDTO(fun);
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @PatchMapping("/update/funcionario/{id}")
+    public ResponseEntity<FuncionarioDTO> updatePasswordFuncionario(@Valid @RequestBody UpdateFuncionarioPassword password, @PathVariable Long id){
+        Funcionario fun = service.updatePasswordFuncionario(id, password.getSenhaAtual(), password.getNovaSenha(), password.getRepitaSenha());
         FuncionarioDTO dto = FuncionarioMapper.toDTO(fun);
         return ResponseEntity.ok().body(dto);
     }

@@ -7,22 +7,28 @@ import com.example.A3_Sistemas_Distribuidos.exception.ListNotFoundException;
 import com.example.A3_Sistemas_Distribuidos.exception.NameNotFoundException;
 import com.example.A3_Sistemas_Distribuidos.exception.NameUniqueException;
 import com.example.A3_Sistemas_Distribuidos.repository.FuncionarioRepository;
+import jakarta.validation.constraints.NotBlank;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class FuncionarioService {
 
     @Autowired
     FuncionarioRepository repository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public Funcionario create(Funcionario funcionario){
         try {
-            String encryptedPassword = new BCryptPasswordEncoder().encode(funcionario.getSenha());
-            funcionario.setSenha(encryptedPassword);
+            funcionario.setSenha(passwordEncoder.encode(funcionario.getSenha()));
             return repository.save(funcionario);
         } catch (org.springframework.dao.DataIntegrityViolationException e) {
             throw new NameUniqueException("Dados já cadastrados!");
@@ -58,6 +64,29 @@ public class FuncionarioService {
         Funcionario funcionario = findById(id);
 
         funcionario.setCargo(cargo);
+        return repository.save(funcionario);
+    }
+
+    public Funcionario updatePasswordGerente(Long id, String password){
+        Funcionario funcionario = findById(id);
+
+        funcionario.setSenha(passwordEncoder.encode(password));
+
+        return repository.save(funcionario);
+    }
+
+    public Funcionario updatePasswordFuncionario(Long id, String senhaAtual, String novaSenha, String repitaSenha){
+        Funcionario funcionario = findById(id);
+
+        if (!passwordEncoder.matches(senhaAtual, funcionario.getSenha())) {
+            throw new NameUniqueException("Senha incorreta!");
+        }
+        if (!novaSenha.equals(repitaSenha)) {
+            throw new NameUniqueException("Senhas diferentes!");
+        }
+
+        funcionario.setSenha(passwordEncoder.encode(novaSenha));
+
         return repository.save(funcionario);
     }
 

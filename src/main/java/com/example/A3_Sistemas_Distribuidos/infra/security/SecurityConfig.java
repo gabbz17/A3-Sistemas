@@ -35,6 +35,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/funcionario/cargo/*").hasRole("GERENTE")
                         .requestMatchers(HttpMethod.GET, "/api/funcionario/nome/*").hasRole("GERENTE")
                         .requestMatchers(HttpMethod.PATCH, "/api/funcionario/update/*").hasRole("GERENTE")
+                        .requestMatchers(HttpMethod.PATCH, "/api/funcionario/update/gerente/*").hasRole("GERENTE")
                         .requestMatchers(HttpMethod.DELETE, "/api/funcionario/delete/*").hasRole("GERENTE")
                         //INICIO DA AUTORIZAÇÃO DE TAREFAS
                         .requestMatchers(HttpMethod.POST, "/api/tarefa").hasRole("SUPERVISOR")
